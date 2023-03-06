@@ -2,18 +2,50 @@ const user = require("../models/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //we will use this just for trying
-const sendmail = require("../helpers/email-send")
+const sendmail = require("../helpers/email-send");
+const { default: mongoose } = require("mongoose");
+const { ObjectId } = require("mongodb");
 
 const resolvers = {
     
     Query : {
         usercall : () => "Hey user",
-        phonenumber : () => Math.round(Math.random() * 10),
+        
+        getUserByID : async (parent,args) =>{
+            const id = args
+            const ID = new ObjectId(id)
+            try {
+                const User = await user.findById(ID);
+                if (!User) {
+                  throw new Error('User not found');
+                }
+                return User;
+              } catch (error) {
+                console.error(error);
+                throw new Error('Error fetching user by id');
+              }
+        },
+
+        getUserByName : async (parent,args) =>{
+            const username = args
+            try {
+                const User = await user.findOne(username);
+                if (!User) {
+                  throw new Error('User not found');
+                }
+                return User;
+              } catch (error) {
+                console.error(error);
+                throw new Error('Error fetching user by id');
+              }
+        },
+
         allusers : async () => await user.find(),
+        
     },
     Mutation : {
 
-
+    //--------------creating a user resolver------------------------------------    
         adduser : async (parent,args) => {
             const {username,email,password}=args;
             console.log("the user you want to add is : "+args);
@@ -23,14 +55,12 @@ const resolvers = {
                 if (userexists.username===username){
                     throw new Error('Username already taken');
                 }
-            
                 //if (userexists.email===email){
                   //  throw new Error('email already taken'); 
                 //}
             }
             //if the user does not already exists ,we add
             //we just need to setup the email verification 
-            
             const cryptpassword = await bcrypt.hash(password,10);
             const User = new user({username,email,password : cryptpassword, verified : false});
             //here we created verification token
@@ -41,6 +71,7 @@ const resolvers = {
             return User;
         },
         
+    //--------------log in resolver and generating a token----------------------------------------------------
         login : async (parent,args) => {
             const {username,email,password} = args;
             const userexists = await user.findOne({$or : [{username},{email}]});
@@ -53,13 +84,12 @@ const resolvers = {
             }
             //return userexists
             //still needs to create a tokken
-            const token = jwt.sign({ username: userexists.username} , process.env.SECRETKEY , {expiresIn:"1h"})
-            return token
+            const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"1h"})
+            userexists.password = undefined
+            return {userexists,token}
         },
-
         //now in auth using Google,i will put a client side resolver here but I have to move it later
         
-
     },
 }
 
