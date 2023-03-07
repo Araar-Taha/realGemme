@@ -5,12 +5,12 @@ const typeDefs = gql`
     id: ID!
     title: String!
     content: String!
-     authorId: ID!
-#   createdAt: DateTime!
-#   updatedAt: DateTime!
+    authorId: ID!
+    createdAt: DateTime!
+    updatedAt: DateTime!
 #   likes: [User!]!
   }
-
+  scalar DateTime
   type Query {
     posts: [Post!]
     post(id: ID!): Post
@@ -18,7 +18,7 @@ const typeDefs = gql`
   input PostInput{
     title:String!
     content:String!
-    authorId:ID!
+    # authorId:ID!
     # author:String!
 
 }
