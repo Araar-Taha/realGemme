@@ -5,9 +5,10 @@ const typeDefs = gql`
     id: ID!
     title: String!
     content: String!
-    # author: String!
-    # likes: Int!
-    # createdAt: String!
+     authorId: ID!
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+#   likes: [User!]!
   }
 
   type Query {

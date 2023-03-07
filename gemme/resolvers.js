@@ -1,11 +1,12 @@
 const typeDefs = require('./typeDefs');
 const Post = require('./postmodel');
+const {ObjectId} = require('mongodb');
 
 
 const resolvers = {
     Query: {
-      posts: () => Post.find(),
-      post: (_, { id }) => Post.findById(id),
+      posts: async  () => await Post.find(),
+      post: async  (_, { id }) => await Post.findById(id),
     },
     Mutation: {
       createPost: (parent, args) => {
@@ -13,12 +14,15 @@ const resolvers = {
         const post = new Post({ title, content });
         return post.save();
       },
-      updatePost: async (_, { id, title, content }) => {
-        const post = await Post.findByIdAndUpdate(id, { title, content }, { new: true });
+      updatePost: async (parent, args) => {
+        const {id,title, content }=args;
+        const ID = new ObjectId(id);
+        const post = await Post.findByIdAndUpdate(ID, { title, content }, { new: true });
         return post;
       },
       deletePost: async (_, { id }) => {
-        await Post.findByIdAndDelete(id);
+        const ID = new ObjectId(id);
+        await Post.findByIdAndDelete(ID);
         return id;
       },
     },

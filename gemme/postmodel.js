@@ -12,10 +12,17 @@ const postSchema=new mongoose.Schema({
     content : {
         type:String,
     },
-    author :{
-        id : mongoose.Schema.Types.ObjectId,
-        // ref:'user'
-    }
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+      updatedAt: {
+        type: Date,
+        default: Date.now,}
+    // author :{
+    //     id : mongoose.Schema.Types.ObjectId,
+    //     // ref:'user'
+    // }
 })
 
 const Post = new mongoose.model("Post", postSchema)
