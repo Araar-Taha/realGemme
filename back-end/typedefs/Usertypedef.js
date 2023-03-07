@@ -26,6 +26,8 @@ type Mutation{
     adduser(username:String!, email:String! , password:String!): User!
     
     login (username:String , email:String , password:String!): String
+
+    deleteUser (username:String) : User
     
     
 }`;

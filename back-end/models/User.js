@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { post } = require('../routes/email-verification');
 
 
 const userSchma = new mongoose.Schema({
@@ -6,7 +7,9 @@ const userSchma = new mongoose.Schema({
     email : String,
     password : String,
     profile_picture: String,
-    posts : [mongoose.Schema.Types.ObjectId],
+    post :{ posts :[mongoose.Schema.Types.ObjectId]
+            //ref : post       
+    },
     firends : [mongoose.Schema.Types.ObjectId],
     verificationtoken : String,
     verified: Boolean,

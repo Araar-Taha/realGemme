@@ -88,8 +88,19 @@ const resolvers = {
             userexists.password = undefined
             return {userexists,token}
         },
-        //now in auth using Google,i will put a client side resolver here but I have to move it later
-        
+        //we should add google authnetification
+    //-------------delete user resolver----------------------------------------------------
+        deleteUser : async (parent,args) =>{
+            const username = args
+            try{
+            const deletedUser = await user.findOneAndDelete(username)
+            return deletedUser
+            }
+            catch(err){
+                throw new Error('can not delete yo')
+            }
+        }
+
     },
 }
 

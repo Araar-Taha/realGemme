@@ -15,20 +15,25 @@ const authMiddleware = require('./middlewares/authcheck')
 const app = express()
 
 app.use(userrouter)
-console.log(typeof authMiddleware);
+//console.log(typeof authMiddleware);
 //app.use(authMiddleware)
 
 //connecting to database
 connectDB()
 
 //creating the apollo server
-const server = new ApolloServer({typeDefs,resolvers,});
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context : ({req}) =>{
+    return authMiddleware(req);
+  }});
 
 async function startserver(){
     await server.start()
     server.applyMiddleware({ app });
     app.listen({ port }, () =>
-    console.log(`🚀 Server ready at http://localhost:8080${server.graphqlPath}`)
+    console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`)
   );
 }
 startserver()
