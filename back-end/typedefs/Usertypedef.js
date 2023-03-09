@@ -12,6 +12,10 @@ type User {
     verificationtoken : String
     verified: Boolean
 }
+type loginout{
+    token : String
+    User : ID
+}
 
 type Query {
     usercall : String!
@@ -20,12 +24,12 @@ type Query {
 
     getUserByName (username:String) : User
 
-    allusers : [User!]
+    allusers : User
 }
 type Mutation{
     adduser(username:String!, email:String! , password:String!): User!
     
-    login (username:String , email:String , password:String!): String
+    login (username:String , email:String , password:String!): loginout
 
     deleteUser (username:String) : User
     

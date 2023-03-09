@@ -40,7 +40,7 @@ const resolvers = {
               }
         },
 
-        allusers : async () => await user.find(),
+        allusers : async (req,res,context) =>  await user.findById(context.locals.user)
         
     },
     Mutation : {
@@ -55,9 +55,9 @@ const resolvers = {
                 if (userexists.username===username){
                     throw new Error('Username already taken');
                 }
-                //if (userexists.email===email){
-                  //  throw new Error('email already taken'); 
-                //}
+                // if (userexists.email===email){
+                //     throw new Error('email already taken'); 
+                // }
             }
             //if the user does not already exists ,we add
             //we just need to setup the email verification 
@@ -82,11 +82,11 @@ const resolvers = {
             if (!correctpassword){
                 throw new Error("incorrect password al7ej")
             }
-            //return userexists
+            
             //still needs to create a tokken
             const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"1h"})
             userexists.password = undefined
-            return {userexists,token}
+            return {token,User:userexists._id}
         },
         //we should add google authnetification
     //-------------delete user resolver----------------------------------------------------

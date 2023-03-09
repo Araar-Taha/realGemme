@@ -7,8 +7,9 @@ const userSchma = new mongoose.Schema({
     email : String,
     password : String,
     profile_picture: String,
-    post :{ posts :[mongoose.Schema.Types.ObjectId]
-            //ref : post       
+    post :{ 
+        posts :[mongoose.Schema.Types.ObjectId]
+        //ref : post       
     },
     firends : [mongoose.Schema.Types.ObjectId],
     verificationtoken : String,
