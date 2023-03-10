@@ -1,16 +1,22 @@
-const {ApolloServer , gql} = require("apollo-server-express");
+const {ApolloServer , gql} = require("apollo-server-express")
 const mongo = require("mongodb")
-const typeDefs= require("./typedefs/Usertypedef")
-const resolvers= require("./resolvers/Userresolvers")
 const connectDB= require("./helpers/setDB")
-const dotenv = require('dotenv').config();
-const userDB=require("./models/User");
-const { Schema, default: mongoose } = require("mongoose");
+const dotenv = require('dotenv').config()
+const { Schema, default: mongoose } = require("mongoose")
 const port=process.env.PORT || 8080
 const userrouter = require('./routes/email-verification')
 const express = require('express')
 const authMiddleware = require('./middlewares/authcheck')
 mongoose.set('strictQuery', false);
+const { mergeTypeDefs,mergeResolvers } = require('@graphql-tools/merge')
+
+const userresolvers= require("./resolvers/Userresolvers")
+const postresolvers = require("./resolvers/Postresolvers")
+
+const Usertypedef = require("./typedefs/Usertypedef")
+const Posttypedef = require("./typedefs/Posttypedefs")
+
+
 
 //here i will try another aproach
 const app = express()
@@ -25,6 +31,9 @@ app.use(authMiddleware)
 //connecting to database
 connectDB()
 
+// here i will merge the resolvers and typedefs
+const resolvers = mergeResolvers([userresolvers,postresolvers])
+const typeDefs = mergeTypeDefs([Usertypedef,Posttypedef])
 
 
 //creating the apollo server
@@ -51,7 +60,7 @@ startserver()
 //server.listen({port }).then(({ url }) => console.log(`GraphQL server running at ${url}`));
  
 // here I will send a client request 
-//  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDcxMmY0ZmU0ZjNhZDU2ODY4ZDU4YyIsImlhdCI6MTY3ODM3MjAyNSwiZXhwIjoxNjc4Mzc1NjI1fQ.0ifEPchyeDH6nd8MJQHalhNYY89Cm_JctTUWXW9yN0s"
+//  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDcxMmY0ZmU0ZjNhZDU2ODY4ZDU4YyIsImlhdCI6MTY3ODQ2MTIyMiwiZXhwIjoxNjc4NDY0ODIyfQ.9kArJZCnjyQdQADoUH37MBviUmviHejo8nGAeFyp8us"
 //  fetch('http://localhost:8080/graphql', {
 //   method: 'POST',
 //   headers: { 

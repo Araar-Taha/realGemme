@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { post } = require('../routes/email-verification');
+
 
 
 const userSchma = new mongoose.Schema({
