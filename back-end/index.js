@@ -9,10 +9,11 @@ const express = require('express')
 const authMiddleware = require('./middlewares/authcheck')
 mongoose.set('strictQuery', false);
 const { mergeTypeDefs,mergeResolvers } = require('@graphql-tools/merge')
-
+const cors = require("cors")
+// imporing resolvers
 const userresolvers= require("./resolvers/Userresolvers")
 const postresolvers = require("./resolvers/Postresolvers")
-
+// importing typedefs
 const Usertypedef = require("./typedefs/Usertypedef")
 const Posttypedef = require("./typedefs/Posttypedefs")
 
@@ -22,7 +23,7 @@ const Posttypedef = require("./typedefs/Posttypedefs")
 const app = express()
 
 
-
+// app.use(cors)
 app.use(userrouter)
 app.use(authMiddleware)
 
@@ -40,7 +41,7 @@ const typeDefs = mergeTypeDefs([Usertypedef,Posttypedef])
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context : ({_,res}) => ({ locals: res.locals}),
+  context : ({req,res}) => ({ req}),
   introspection: true  
 
   });
@@ -60,24 +61,24 @@ startserver()
 //server.listen({port }).then(({ url }) => console.log(`GraphQL server running at ${url}`));
  
 // here I will send a client request 
-//  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDcxMmY0ZmU0ZjNhZDU2ODY4ZDU4YyIsImlhdCI6MTY3ODQ2MTIyMiwiZXhwIjoxNjc4NDY0ODIyfQ.9kArJZCnjyQdQADoUH37MBviUmviHejo8nGAeFyp8us"
-//  fetch('http://localhost:8080/graphql', {
-//   method: 'POST',
-//   headers: { 
-//     'Content-Type': 'application/json',
-//     'Authorization': `Bearer ${token}`
-//   },
-//   body: JSON.stringify({
-//     query: `
-//       query {
-//         allusers {
-//           id
-//           username
-//           email
-//         }
-//       }
-//     `
-//   })
-// })
-//   .then((res) => res.json())
-//   .then((data) => console.log(data));
+ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDcxMmY0ZmU0ZjNhZDU2ODY4ZDU4YyIsImlhdCI6MTY3ODU0ODcxMSwiZXhwIjoxNjc4NTU1OTExfQ.TESOl75b7F6rokXag_LUByuFi9Bv9Lb-BltazROr-FA"
+ fetch('http://localhost:8080/graphql', {
+  method: 'POST',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    query: `
+      query {
+        allusers {
+          id
+          username
+          email
+        }
+      }
+    `
+  })
+})
+  .then((res) => res.json())
+  .then((data) => console.log(data));

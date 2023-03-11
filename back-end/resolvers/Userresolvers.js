@@ -40,7 +40,7 @@ const resolvers = {
               }
         },
 
-        allusers : async (req,res,context) =>  await user.findById(context.locals.user)
+        allusers : async (req,res,context) =>  await user.findById(context.req.authuser)
         
     },
     Mutation : {
@@ -84,7 +84,7 @@ const resolvers = {
             }
             
             //still needs to create a tokken
-            const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"1h"})
+            const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"2h"})
             userexists.password = undefined
             return {token,User:userexists._id}
         },

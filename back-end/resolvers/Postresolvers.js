@@ -9,34 +9,52 @@ const resolvers = {
       post: async  (_, { id }) => await Post.findById(id),
     },
     Mutation: {
-      createPost: async  (parent, args) => { 
+      createPost: async  (parent, args , context) => { 
         const {title,content}= args;
+      if (context.req.authentificated){  
         const post = new Post({ 
             title, 
             content ,
             createdAt: Date.now(),
-            updatedAt: Date.now()
+            updatedAt: Date.now(),
+            author : context.req.authuser,
         });
             await post.save();
             return post;
-      },
-      updatePost: async (parent, args) => {
-        const {id,title, content }=args;
+      }
+    },
+
+
+      updatePost: async (parent, args,context) => {
+        const {id ,title , content }=args;
         const ID = new ObjectId(id);
-        const post = await Post.findByIdAndUpdate(ID, { title, content }, { new: true });
+        const post = await Post.findById(ID);
         if (!post) {
             throw new Error('Post not found');
           }
-        return post;
+        if (context.req.authuser==post.author){
+          post.updatedAt=Date.now
+          post.title=title
+          post.content=content
+          return post
+        }  
+        return "you are not the author"
       },
-      deletePost: async (_, { id }) => {
+
+
+      deletePost: async (_, { id },context) => {
         const ID = new ObjectId(id);
-        await Post.findByIdAndDelete(ID);
+        const post = await  Post.findById(ID);
         if (!post) {
             throw new Error('Post not found');
           }
+        if (context.req.authuser==post.author){
+          await post.deleteOne()
+        }
         return id;
       },
+
+
     },
   };
 
