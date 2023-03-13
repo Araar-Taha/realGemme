@@ -19,6 +19,7 @@ const resolvers = {
             updatedAt: Date.now(),
             author : context.req.authuser,
         });
+            // post.author = new ObjectId(context.req.authuser);
             await post.save();
             return post;
       }

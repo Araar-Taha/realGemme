@@ -5,7 +5,7 @@ function authMiddleware(req, res, next) {
   // console.log('middleware fired')
   const authHeader = req.headers.authorization;
   if (authHeader) {
-    console.log(authHeader)
+    // console.log(req)
     const token = authHeader.split(' ')[1];
     jwt.verify(token, process.env.SECRETKEY, (err, decoded) => {
       if (err) {
@@ -14,7 +14,8 @@ function authMiddleware(req, res, next) {
       }
       req.authuser = decoded.id;
       req.authentificated = true;
-      console.log('middleware 888')
+      console.log('token valide,user has acces')
+      
       
     });
   }

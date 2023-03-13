@@ -40,8 +40,10 @@ const resolvers = {
               }
         },
 
-        allusers : async (req,res,context) =>  await user.findById(context.req.authuser)
-        
+        allusers : async (req,res,context) =>{  
+            userdata =await user.findById(context.req.authuser)
+            return userdata
+        }
     },
     Mutation : {
 

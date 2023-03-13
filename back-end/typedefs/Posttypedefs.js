@@ -5,7 +5,7 @@ const typeDefs = gql`
     id: ID!
     title: String!
     content: String!
-    authorId: ID!
+    author: ID!
     createdAt: DateTime!
     updatedAt: DateTime!
 #   likes: [User!]!

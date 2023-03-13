@@ -19,10 +19,8 @@ const postSchema=new mongoose.Schema({
       updatedAt: {
         type: Date,
         default: Date.now},
-    author :{
-        id : mongoose.Schema.Types.ObjectId,
-        // ref:'User'
-    }
+    author : mongoose.Schema.Types.ObjectId,
+        
 })
 
 const Post = new mongoose.model("Post", postSchema)
