@@ -61,8 +61,7 @@ const resolvers = {
                 //     throw new Error('email already taken'); 
                 // }
             }
-            //if the user does not already exists ,we add
-            //we just need to setup the email verification 
+            //if the user does not already exists ,we add 
             const cryptpassword = await bcrypt.hash(password,10);
             const User = new user({username,email,password : cryptpassword, verified : false});
             //here we created verification token
@@ -84,8 +83,6 @@ const resolvers = {
             if (!correctpassword){
                 throw new Error("incorrect password al7ej")
             }
-            
-            //still needs to create a tokken
             const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"2h"})
             userexists.password = undefined
             return {token,User:userexists._id}

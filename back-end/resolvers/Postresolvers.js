@@ -1,5 +1,6 @@
 
 const Post = require("../models/Post");
+const User = require("../models/User");
 const {ObjectId} = require('mongodb');
 
 
@@ -11,7 +12,7 @@ const resolvers = {
     Mutation: {
       createPost: async  (parent, args , context) => { 
         const {title,content}= args;
-      if (context.req.authentificated){  
+      if (context.req.authenticated){  
         const post = new Post({ 
             title, 
             content ,
@@ -19,8 +20,10 @@ const resolvers = {
             updatedAt: Date.now(),
             author : context.req.authuser,
         });
-            // post.author = new ObjectId(context.req.authuser);
             await post.save();
+            author = await User.findById(context.req.authuser)
+            author.posts.push(post.id);
+            author.save()
             return post;
       }
     },
@@ -39,6 +42,7 @@ const resolvers = {
           post.content=content
           return post
         }  
+ 
         return "you are not the author"
       },
 

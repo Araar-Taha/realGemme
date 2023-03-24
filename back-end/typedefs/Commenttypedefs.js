@@ -9,8 +9,9 @@ const typeDefs = gql`
   
   type Comment {
     id: ID
-    content: String!
+    comcontent: String
     author: ID
+    post : ID
   }
 
   input CreateCommentInput {
@@ -18,7 +19,7 @@ const typeDefs = gql`
     postId: ID
   }
   type Mutation {
-    createComment(input: CreateCommentInput!): Comment!
+    createComment(content : String , postID : String): Comment!
   }
 `;
 

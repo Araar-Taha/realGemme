@@ -5,10 +5,12 @@ const typeDefs = gql`
     id: ID!
     title: String!
     content: String!
-    author: ID!
+    author: ID
+    comments : [ID]
     createdAt: DateTime!
     updatedAt: DateTime!
 #   likes: [User!]!
+    
   }
   scalar DateTime
   type Query {

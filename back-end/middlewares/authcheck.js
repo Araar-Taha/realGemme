@@ -13,7 +13,7 @@ function authMiddleware(req, res, next) {
         return res.status(403).json({ message: 'Invalid token yo' });
       }
       req.authuser = decoded.id;
-      req.authentificated = true;
+      req.authenticated = true;
       console.log('token valide,user has acces')
       
       
