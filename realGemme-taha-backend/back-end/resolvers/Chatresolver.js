@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const user = require('../models/User.js');
 const { Chatroom, Message} = require('../models/chat');
-
-const { withFilter } = require('graphql-subscriptions');
+ 
 //const Message = require('../models/chat');
 
+const { PubSub } = require ('graphql-subscriptions');
+
+const pubsub = new PubSub();
 
 const resolver = {
     Query: {
@@ -66,18 +68,28 @@ const resolver = {
       // },
     },
     Subscription: {
-      newMessage: {
-        subscribe: withFilter(
-          () => {
-            return pubsub.asyncIterator(`NEW_MESSAGE`);
-          },
-          () => {
-            return payload.chatroomId.equals(variables.chatroomId);
-          }
-        ),
+   
+    newMessage: {
+      // Example using an async generator
+      subscribe: async (_, {chatroomId}, _con, _info) => {
+        console.log(chatroomId)
+
       },
     },
+  
+  }
   
   };
   
   module.exports = resolver ;
+
+
+//   withFilter(
+//     () => {console.log("working")
+//       return pubsub.asyncIterator(`NEW_MESSAGE`);
+//     },
+//     () => {
+//       return payload.chatroomId.equals(variables.chatroomId);
+//     }
+//   ),
+// },

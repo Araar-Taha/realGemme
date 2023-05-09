@@ -10,10 +10,10 @@ const authMiddleware = require('./middlewares/authcheck')
 mongoose.set('strictQuery', false);
 const { mergeTypeDefs,mergeResolvers } = require('@graphql-tools/merge')
 const cors = require("cors")
-const { createserver } = require('http')
-const { makeExcutableSchema }= require("@graphql-tools/schema")
+const { createServer } = require('http')
+const { makeExecutableSchema }= require("@graphql-tools/schema")
 const { SubscriptionServer } = require('subscriptions-transport-ws')
-const { execute , subscribe } = require('graphql')
+// const { execute , subscribe } = require('graphql')
 const path = require('path')
 // imporing resolvers
 const userresolvers= require("./resolvers/Userresolvers")
@@ -28,6 +28,10 @@ const Chattypedefs = require('./typedefs/Chattypedefs')
 //upload
 const multer = require('multer');  
 const ImageModel = require('./models/image.model.js');
+// imports for the chatroom and subscriptions
+
+
+const {execute, subscribe} = require("graphql")
 //here i will try another aproach
 const app = express()
 app.use(cors())
@@ -35,10 +39,21 @@ app.use(express.static('images'))
 // app.use(cors)
 app.use(userrouter)
 app.use(authMiddleware)
-
 app.use('/PostsImages',express.static('PostsImages'));
 
-
+// stolen 01
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+    app.use((req, res, next) => {
+        console.log(req)
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        if (req.method === 'OPTIONS') {
+            return res.sendStatus(200);
+        }
+        next();
+    })
 
 
 //connecting to database
@@ -49,10 +64,30 @@ const resolvers = mergeResolvers([userresolvers,postresolvers,commentresolvers,C
 const typeDefs = mergeTypeDefs([Usertypedef,Posttypedef,Commenttypedef,Chattypedefs])
 
 
+// creating the subscription server
+const schema = makeExecutableSchema({typeDefs , resolvers})
+const httpServer  = createServer(app)
+const subscriptionserver = SubscriptionServer.create(
+  {schema , execute , subscribe},
+  {server : httpServer, path : '/graphql'}
+)
+
+
 //creating the apollo server
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  plugins : [
+    {
+      async serverWillStart(){
+        return {
+          async drainServer(){
+            subscriptionserver.close()
+          }
+        }
+      }
+    }
+  ],
   context : ({req,res}) => ({ req}),
   introspection: true  
 
@@ -68,6 +103,11 @@ async function startserver(){
     console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`)
   );
 }
+
+
+
+
+
 //  storage acess
 const storage = multer.diskStorage({
   destination: "PostsImages",
