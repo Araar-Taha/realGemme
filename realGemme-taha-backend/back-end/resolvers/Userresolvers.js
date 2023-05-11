@@ -9,7 +9,7 @@ const { ObjectId } = require("mongodb");
 const resolvers = {
     
     Query : {
-        usercall : () => "Hey user",
+        usercall : (parent, args , context) => context.req.authenticated ,
         
         getUserByID : async (parent,args) =>{
             const id = args

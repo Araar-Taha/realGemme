@@ -72,6 +72,7 @@ const resolver = {
     newMessage: {
       // Example using an async generator
       subscribe: async (_, {chatroomId}, _con, _info) => {
+        console.log("working");
         console.log(chatroomId)
 
       },

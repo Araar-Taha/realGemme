@@ -42,18 +42,18 @@ app.use(authMiddleware)
 app.use('/PostsImages',express.static('PostsImages'));
 
 // stolen 01
-const bodyParser = require('body-parser')
-app.use(bodyParser.json());
-    app.use((req, res, next) => {
-        console.log(req)
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        if (req.method === 'OPTIONS') {
-            return res.sendStatus(200);
-        }
-        next();
-    })
+// const bodyParser = require('body-parser')
+// app.use(bodyParser.json());
+//     app.use((req, res, next) => {
+//         console.log(req)
+//         res.setHeader('Access-Control-Allow-Origin', '*');
+//         res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+//         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//         if (req.method === 'OPTIONS') {
+//             return res.sendStatus(200);
+//         }
+//         next();
+//     })
 
 
 //connecting to database
