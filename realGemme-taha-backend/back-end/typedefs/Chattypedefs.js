@@ -2,7 +2,7 @@ const {ApolloServer, gql } = require("apollo-server-express");
 //const { makeExecutableSchema } = require('graphql-tools');
 const mongoose =require("mongoose");
 
-const typeDefs = gql `
+const typeDefs = gql `                                                                                                              
  type User {
     id : ID!
     username : String!

@@ -71,7 +71,8 @@ const subscriptionserver = SubscriptionServer.create(
   {schema , execute , subscribe},
   {server : httpServer, path : '/graphql'}
 )
-
+// const {subscriptionServer, SUBSCRIPTIONS_ENDPOINT} = require('./subscriptionServer')
+// subscriptionServer({ schema })
 
 //creating the apollo server
 const server = new ApolloServer({
@@ -144,6 +145,8 @@ app.post('/upload',(req,res)=>{
 })
 // uploading..
 startserver()
+
+
 
 
 //server.listen({port }).then(({ url }) => console.log(`GraphQL server running at ${url}`));
