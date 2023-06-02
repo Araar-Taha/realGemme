@@ -12,20 +12,41 @@ import { createContext, useEffect, useState } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ChakraProvider,extendTheme } from "@chakra-ui/react";  //for styling
 import LogIn from "./pages/LogIn/LogIn";
+import Cookies from 'js-cookie';
 import SignIn from "./pages/SignIn/SignIn";
 import ImageUploadForm from "./pages/ImageUploadForm";
 
 export const AppPageContext = createContext();
 
+
+
 function App() {
-  const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    uri: "http://localhost:8000/graphql",
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWQ3ZDUzZmFhNDgwYjMzM2NiNGU1NCIsImlhdCI6MTY4NDYyNzMyNSwiZXhwIjoxNjg0NjM0NTI1fQ.0Q3FJQ7fqoENGptFuai0d86eX3AXAtq5fMvrhD4BlrI",
-    },
-  });
+
+  const [token, setToken] = useState('');
+
+  const fetchCookie=() => {
+    console.log("oazjhezahzaioehaiazehiozahoei")
+    const storedToken = Cookies.get('token'); // Retrieve the token from cookies
+    setToken(storedToken || '');
+    console.log(token);
+  }
+  ;
+
+  useEffect(() => {
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      uri: "http://localhost:8000/graphql",
+      headers: {
+        Authorization: token ? `Bearer ${token}` : '', // Use the updated token bearer
+      },
+    });
+    // Update the ApolloProvider client
+    setApolloClient(client);
+  }, [token]);
+
+  const [apolloClient, setApolloClient] = useState(null);
+
+
 
 
   const [cardVisible1, setCardVisible1] = useState(false);
@@ -61,8 +82,12 @@ function App() {
     },
   });
 
+  if (!apolloClient) {
+    return null; // You may choose to render a loading state until the ApolloClient is ready
+  }
+
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <ChakraProvider theme={theme} >
           <AppPageContext.Provider
           value={{
@@ -72,6 +97,7 @@ function App() {
             setCardVisible1,
             setCardVisible2,
             setCardVisible3,
+            fetchCookie,
           }}
         >
           <RouterProvider router={router} />

@@ -2,13 +2,14 @@ import lg from "./LogIn.module.css";
 import gmail from "../../assets/icons/Gmail.png";
 import apple from "../../assets/icons/apple.png";
 import facebook from "../../assets/icons/facebook.png";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import PacmanLoader from "react-spinners/PacmanLoader";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 import { useToast } from "@chakra-ui/toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AppPageContext } from "../../App"
 
 const LOGIN = gql`
   mutation Mutation($email: String, $password: String!) {
@@ -29,6 +30,8 @@ export default function LogIn() {
     console.log(data);
   }
   const navigate = useNavigate();
+  const { fetchCookie } =
+    useContext(AppPageContext);
 
   useEffect(() => {
     if (data) {
@@ -36,7 +39,8 @@ export default function LogIn() {
       const expirationDate = rememberMe
         ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 365 * 10)
         : undefined;
-      Cookies.set("Token", token, { expires: expirationDate });
+      Cookies.set('Token', token, { expires: expirationDate });
+      fetchCookie();
       navigate("/");
       // Perform any other actions after successful login
     }

@@ -85,8 +85,9 @@ const resolvers = {
             if (!correctpassword){
                 throw new Error("incorrect password al7ej")
             }
-            const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"2h"})
+            const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"1000h"})
             userexists.password = undefined
+            console.log(token)
             return {token,User:userexists._id}
         },
 
