@@ -1,0 +1,192 @@
+@import url("../HomePage/Content/Feed/Feed.module.css");
+
+.Profilecontent {
+  margin-left: auto;
+  width: 80%;
+  height: 100vh;
+}
+@media only screen and (max-width: 1000px) {
+  .ProfileContent {
+    width: calc(100% - 200px);
+  }
+}
+
+.container {
+  position: relative;
+  top: 3.66rem;
+  height: calc(100% - 3.66rem);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.Banner {
+  width: 100%;
+}
+
+.info {
+  background-color: black;
+  /* filter: drop-shadow(0px -30px 7px #000); */
+  -webkit-box-shadow: 0px -50px 50px -10px #000000;
+  box-shadow: 0px -50px 50px -10px #000000;
+  width: 100%;
+}
+
+.info__container {
+  margin-left: 2.5rem;
+}
+
+.user {
+  display: flex;
+  color: white;
+  font-size: 2rem;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.user h2 {
+  margin-top: -84px;
+  font-weight: 700;
+}
+
+.profilePic {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  margin-top: -84px;
+}
+
+.editProfilePic {
+  position: relative;
+  right: 22rem;
+  top: 0.7rem;
+  cursor: pointer;
+}
+
+/*This part is about the bio and the posts of the person*/
+
+.content {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.posts {
+  background-color: yellow;
+  width: 50%;
+}
+
+/* this is the Styling of the bio */
+
+.bio {
+  /* background-color: red; */
+  height: 100%;
+  width: 30%;
+  min-width: 200px;
+  max-width: 600px;
+  color: white;
+}
+
+/* bio discription */
+.bio p {
+  background-color: #272626;
+  border-radius: 5px;
+  padding: 0.8rem 0.4rem;
+  
+}
+
+.bio h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 15px 0 5px 0;
+}
+
+/* LINKS */
+.Links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px 10px;
+}
+
+.platform {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 0.4rem;
+  background-color: #272626;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 250px;
+}
+
+/* FRIENDS */
+
+.friends__title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.friends__title h4 {
+  position: relative;
+  color: #636161;
+  top: 0.4rem;
+  font-weight: 700;
+}
+
+.friends__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  background-color:#272626;
+  padding: 0.8rem 0.4rem;
+  border-radius: 5px;
+  
+}
+
+.friends__list img {
+  max-width: 100px;
+  align-self: center;
+}
+
+/* the styling of the sixth person if the friends of the user exceeds 6 people */
+.sixthfriend {
+  position: relative;
+  
+}
+
+.sixthfriend img{
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.dotsContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 100px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 5px;
+}
+
+.dot:first-child {
+  margin-left: 0;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}

@@ -1,0 +1,128 @@
+.SideNB {
+  position: fixed;
+  background-color: #202020;
+  width: 20%;
+  min-width: 200px;
+  /* height: 92.7vh; */
+  /* top: 3.4rem; */
+  height: 100%;
+  color: white;
+  overflow: scroll;
+  z-index: 99;
+}
+
+.SideNB::-webkit-scrollbar {
+  width: 0;
+}
+
+.line:first-child{
+  margin-top: 5rem;
+}
+
+.line {
+  width: 80%;
+  font-size: .8rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1.25rem 0;
+  color:  #BFBFBF;
+  ;
+  margin-inline:auto;
+}
+.line:after {
+  vertical-align: middle;
+  background-color: #BFBFBF;
+  height: 2px;
+  content: "";
+  width: 100%;
+  display: inline-block;
+
+  vertical-align: center;
+  position: relative;
+}
+
+.line:before {
+  vertical-align: middle;
+  background-color: #BFBFBF;
+  height: 2px;
+  content: "";
+  width: 100%;
+  display: inline-block;
+
+  vertical-align: center;
+  position: relative;
+}
+
+.options {
+  display: flex;
+  margin: 1rem 0 1rem 0;
+  align-items: center;
+  position: relative;
+  left: 5%;
+  width: 95%;
+  font-size: .8rem;
+}
+
+.optionword {
+  position: relative;
+  left: .5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.popular {
+  margin-left: 3rem;
+  font-family: "Figtree", sans-serif;
+}
+
+.followed {
+  margin-left: 2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 4rem;
+}
+
+.sideFooter {
+  border-top: 4px solid;
+  border-right: 4px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    90deg,
+    rgba(227, 50, 42, 1) 0%,
+    rgba(91, 36, 147, 1) 100%
+  );
+  padding: 1rem 0;
+  background-color: #272626;
+  position: fixed;
+  bottom: 0;
+  width: 20%;
+  min-width: 200px;
+}
+
+.contact {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact__item {
+  font-size: 0.7rem;
+}
+
+.community {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.6rem;
+  margin-bottom: 0.5rem;
+
+}
+
+.community h3{
+  font-weight: 500;
+}
+
+.community img {
+  width: 2.5rem;
+}

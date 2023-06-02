@@ -1,0 +1,50 @@
+#friendscontainer {
+  background-color: #202020;
+  display: flex;
+  font-size: 1rem;
+  flex-direction: column;
+  overflow: scroll;
+  height: 30%;
+  width: 30%;
+  min-width: 220px;
+  max-width: 300px;
+  min-height: 300px;
+  border-radius: 10px;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+#friendscontainer::-webkit-scrollbar {
+  width: 0;
+}
+
+#friendslist {
+  display: block;
+  height: 100px;
+}
+
+.friend {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 0.6rem auto;
+  font-size: 1rem;
+  color: white;
+  width: 90%;
+}
+
+.icon{
+  margin-left: auto;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.profilePic {
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 50% 50%;
+}
+
+.friendname {
+  margin-left: 1rem;
+  font-weight: 500;
+}

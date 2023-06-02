@@ -1,0 +1,67 @@
+[debug] [2023-05-16T01:23:29.797Z] ----------------------------------------------------------------------
+[debug] [2023-05-16T01:23:29.802Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-05-16T01:23:29.803Z] CLI Version:   12.0.0
+[debug] [2023-05-16T01:23:29.804Z] Platform:      win32
+[debug] [2023-05-16T01:23:29.804Z] Node Version:  v19.6.1
+[debug] [2023-05-16T01:23:29.804Z] Time:          Tue May 16 2023 02:23:29 GMT+0100 (UTC+01:00)
+[debug] [2023-05-16T01:23:29.804Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-16T01:23:29.818Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-16T01:23:29.819Z] > authorizing via signed-in user (abdennourmatouk7@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\PC\Desktop\matouk\realGemme-taha-backend\realGemme-taha-backend\back-end
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2023-05-16T01:25:08.141Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-05-16T01:25:08.142Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"gemme-prjct-1234","name":"gemme-prjct-1234"}
+[debug] [2023-05-16T01:25:09.271Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2023-05-16T01:25:09.272Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/cp.8971683073763822357"}
+[debug] [2023-05-16T01:25:09.273Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.8971683073763822357 [none]
+[debug] [2023-05-16T01:25:10.195Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.8971683073763822357 200
+[debug] [2023-05-16T01:25:10.195Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.8971683073763822357 {"name":"operations/cp.8971683073763822357","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","ready":true},"done":true,"error":{"code":9,"message":"Callers must accept Terms of Service","details":[{"@type":"type.googleapis.com/google.rpc.PreconditionFailure","violations":[{"type":"TOS","subject":"cloud","description":"Callers must accept Terms of Service"}]}]}}
+[debug] [2023-05-16T01:25:10.491Z] FirebaseError: Callers must accept Terms of Service
+    at OperationPoller.poll (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\operation-poller.js:24:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createCloudProject (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:186:29)
+    at async createFirebaseProjectAndLog (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:45:9)
+    at async promptAndCreateNewProject (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:32:12)
+    at async doSetup (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:88:27)
+    at async init (C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:37:9)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2023-05-16T08:37:54.430Z] ----------------------------------------------------------------------
+[debug] [2023-05-16T08:37:54.433Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-05-16T08:37:54.433Z] CLI Version:   12.0.0
+[debug] [2023-05-16T08:37:54.433Z] Platform:      win32
+[debug] [2023-05-16T08:37:54.434Z] Node Version:  v19.6.1
+[debug] [2023-05-16T08:37:54.434Z] Time:          Tue May 16 2023 09:37:54 GMT+0100 (UTC+01:00)
+[debug] [2023-05-16T08:37:54.434Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-16T08:37:54.442Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-16T08:37:54.443Z] > authorizing via signed-in user (abdennourmatouk7@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\PC\Desktop\matouk\realGemme-taha-backend\realGemme-taha-backend\back-end
+

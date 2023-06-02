@@ -1,0 +1,168 @@
+.LogIn {
+  background-image: url("../../assets/images/signInSignup.png");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #949393;
+}
+
+.LogInContainer {
+  width: 400px;
+  border-radius: 16px;
+  background-color: #181818;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 4.37rem;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.input1,
+.input2 {
+  display: block;
+  align-content: center;
+  margin-bottom: 12px;
+  width: 100%;
+  min-width: 10rem;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: #504e4e;
+  color: white;
+  border: none;
+}
+
+.input2 {
+  margin: 0;
+}
+
+.passwordwrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.eye {
+  position: absolute;
+  cursor: pointer;
+  right: 2%;
+}
+
+.input:nth-child(3) {
+  margin-bottom: 1rem;
+}
+
+.input::placeholder {
+  position: relative;
+  left: 1rem;
+  font-size: 0.9rem;
+}
+
+.rememberForgot {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.remember {
+  gap: 1rem;
+}
+
+.rememberForgot p,
+a {
+  position: relative;
+  bottom: 2px;
+}
+
+.remember input[type="checkbox"] {
+  width: 1rem;
+  accent-color: #504e4e;
+}
+
+.remember,
+.rememberForgot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logIn__button {
+  background-image: linear-gradient(95.53deg, #da322e 7.24%, #ab2c50 97.52%);
+  border: none;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.logIn__button:active {
+  background-image: linear-gradient(
+    95.53deg,
+    #b52f2d 7.24%,
+    rgb(147, 24, 18) 97.52%
+  );
+}
+
+.or {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 0 1.25rem 0;
+  color: #bfbfbf;
+}
+
+.or:after,
+.or:before {
+  vertical-align: middle;
+  background-color: #bfbfbf;
+  height: 2px;
+  content: "";
+  width: 100%;
+  position: relative;
+  top: 1px;
+}
+
+.gmail,
+.facebook,
+.apple {
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gmail {
+  background-color: white;
+}
+
+.facebook {
+  background-color: #3b5999;
+}
+
+.apple {
+  background-color: white;
+}
+
+.create {
+  background: linear-gradient(180deg, #d02f3a 0%, #ab2b60 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

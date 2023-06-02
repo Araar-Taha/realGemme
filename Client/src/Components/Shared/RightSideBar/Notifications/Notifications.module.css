@@ -1,0 +1,56 @@
+.notifications{
+  background-color: #202020;
+  display: flex;
+  /* position: fixed; */
+  gap: 1rem;
+  right: 1rem;
+  top: 4.5rem;
+  font-size: 1rem;
+  flex-direction: column;
+  overflow: scroll;
+  width: 30%;
+  min-width: 210px;
+  max-width: 300px;
+  height: 30%;
+  min-height: 300px;
+  max-height: 350px;
+  border-radius: 10px;
+  z-index: 1;
+  color: white;
+}
+
+
+.notifications::-webkit-scrollbar {
+    width: 0;
+  }
+
+.notification{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: .5rem;
+}
+
+.notification:first-child{
+    margin-top: 1rem;
+}
+.notification h2{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.notification span{
+    font-size: .8rem;
+    color: white;
+}
+
+.notification p{
+    font-size: .5rem;
+    color: #8B8585  ;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    /* margin-left: 1rem   ; */
+}

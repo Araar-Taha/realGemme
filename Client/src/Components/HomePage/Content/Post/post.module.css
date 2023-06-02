@@ -1,0 +1,71 @@
+
+.publish {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    background-color: #272626;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 40%;
+    min-width: 300px;
+  }
+  
+  .person {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .person input {
+    background-color: #404040;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    color: white;
+  }
+  
+  .person input::placeholder {
+    position: relative;
+    left: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .postAndAttechements {
+    color: white;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .attachements {
+    display: flex;
+    gap: .8rem;
+    margin-left: 3rem;
+  }
+  
+  .attachments__item {
+    width: 2rem;
+  }
+  
+
+  .post {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .post p{
+    font-size: 0.8rem;
+    color: #555353;
+  }
+  .post button {
+    background-image: linear-gradient(95.53deg, #DA322E 7.24%, #AB2C50 97.52%);
+    border: none;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 75.5px;
+    font-size: 0.8rem;
+  }
+  .post button:active {
+    background-image: linear-gradient(95.53deg, #b52f2d 7.24%, rgb(147, 24, 18)97.52%);
+  }
+  
