@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 
 
@@ -17,7 +18,7 @@ const ImageUploadForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [caption, setCaption] = useState("");
 
-  const [createPost] = useMutation(CREATE_POST_MUTATION);
+  const [createPost,{loading}] = useMutation(CREATE_POST_MUTATION);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -33,11 +34,9 @@ const ImageUploadForm = () => {
         variables: { title: caption,groupId: "642814680df9a4f414ed5612", content: caption, image:"" },
         context: {
           headers: {
-            authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWQ3ZDUzZmFhNDgwYjMzM2NiNGU1NCIsImlhdCI6MTY4NDYyNzMyNSwiZXhwIjoxNjg0NjM0NTI1fQ.0Q3FJQ7fqoENGptFuai0d86eX3AXAtq5fMvrhD4BlrI',
+            authorization: `Bearer ${Cookies.get('Token')}`,
           },
       }});
-      
-
       if (data){
       
        uploadImage(selectedFile,data.createPost._id);}
@@ -62,7 +61,7 @@ const ImageUploadForm = () => {
     }
   };
 
-
+  // console.log(Cookies.get('Token'))
 
   
   return (
