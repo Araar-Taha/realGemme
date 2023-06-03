@@ -9,6 +9,7 @@ type User {
     profile_picture: String
     posts : [ID]
     friends : [ID]
+    groups: [Group]
     verificationtoken : String
     verified: Boolean
     fcmTokens: [String]

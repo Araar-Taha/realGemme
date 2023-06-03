@@ -12,21 +12,18 @@ import { useEffect, useState } from "react";
 const Homepage = () => {
 
   const [token, setToken] = useState("");
-
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  }
   const navigate = useNavigate();
 
   useEffect(() => {
     const Token = Cookies.get('Token');
-    const UserID = Cookies.get('UserID');
     if (Token) {
       setToken(Token)}
     else{
       navigate("/logIn")
     }
     }, [token]);
+
+
   return (
 
     <div className="">

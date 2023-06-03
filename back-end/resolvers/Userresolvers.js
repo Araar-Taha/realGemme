@@ -42,6 +42,8 @@ const resolvers = {
 
         allusers : async (req,res,context) =>{  
             userdata =await user.findById(context.req.authuser)
+            console.log(userdata);
+            // userdata.password = undefined;
             return userdata
         }
     },
@@ -83,7 +85,7 @@ const resolvers = {
             }
             const correctpassword = await bcrypt.compare(password,userexists.password);
             if (!correctpassword){
-                throw new Error("incorrect password al7ej")
+                throw new Error("incorrect password try again")
             }
             const token = jwt.sign({ id: userexists.id} , process.env.SECRETKEY , {expiresIn:"1000h"})
             userexists.password = undefined

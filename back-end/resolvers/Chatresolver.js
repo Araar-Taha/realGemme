@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const user = require('../models/User.js');
-const Chatroom = require('../models/chat');
+// const Chatroom = require('../models/chat');
 const admin = require("firebase-admin");
-const { Message} = require('../models/chat');
+const {Chatroom, Message} = require('../models/chat');
 
 //const Message = require('../models/chat');
 async function sendFCMMessage(event, payload) {
@@ -58,7 +58,7 @@ const resolver = {
         console.log(chatroom)
 
         
-        const Mssage = await Message.create({receiverId, content, chatroom: chatroom._id, sender: req.authuser});
+        const Mssage = await Message.create({receiver:receiverId, content, chatroom: chatroom._id, sender: req.authuser});
 
         console.log(Mssage)
 

@@ -30,7 +30,7 @@ const typeDefs = gql`
   input CreateGroupInput {  
     name: String!
     description: String!
-    ownerId: String!
+    
   }
 
   type Mutation {

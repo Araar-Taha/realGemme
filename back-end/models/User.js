@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const group = require("./group");
 
 
 const userSchma = new mongoose.Schema({
@@ -11,10 +11,7 @@ const userSchma = new mongoose.Schema({
     friends : [mongoose.Schema.Types.ObjectId],
     verificationtoken : String,
     verified: Boolean,
-    groups: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Group',
-      }],
+    groups: [group.schema],
     fcmTokens: [String]
 })
 

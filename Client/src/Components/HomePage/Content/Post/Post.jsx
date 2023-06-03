@@ -46,7 +46,7 @@ const Post = () => {
   const handleUploadAndPost = async () => {
     try {
       const { data } = await createPost({
-        variables: { title: caption, groupId: "642814680df9a4f414ed5612", content: caption, image: "" },
+        variables: { title: caption, groupId: "6467023b5a796bb56bb61538", content: caption, image: "" },
         context: {
           headers: {
             authorization: `Bearer ${Cookies.get("Token")}`,

@@ -30,8 +30,17 @@ export default function LogIn() {
     console.log(data);
   }
   const navigate = useNavigate();
-  const { fetchCookie } =
-    useContext(AppPageContext);
+  const { fetchCookie } =useContext(AppPageContext);
+
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const Token = Cookies.get('Token');
+    if (Token) {
+        navigate("/")}
+    },[]);
+
+  
 
   useEffect(() => {
     if (data) {

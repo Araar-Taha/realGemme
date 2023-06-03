@@ -17,8 +17,8 @@ const resolvers = {
       }, 
     },
     Mutation: {
-      createGroup: async (parent, args) => {
-        const { name, description, ownerId } = args.input;
+      createGroup: async (parent, args,context) => {
+        const { name, description } = args.input;
         const group = await Group.findOne({ name });
         if (group) {
           throw new Error("Group already exists with this name");
@@ -26,8 +26,10 @@ const resolvers = {
         const newGroup = await Group.create({
           name,
           description,
-          owner: ownerId
+          owner: context.req.authuser,
         });
+        newGroup.members.push(context.req.authuser)
+        newGroup.save();
         return newGroup;
       },
       joinGroup: async (parent, { groupId }, context) => {
@@ -52,8 +54,9 @@ const resolvers = {
         group.members.push(context.req.authuser);
         await group.save();
       const author = await User.findById(context.req.authuser);
-        if (!author.groups.includes(groupId)) {
-          author.groups.push(groupId);
+        if (!author.groups.includes(group)) {
+          author.groups.push(group);
+          console.log("member added to the group")
           await author.save();
         }
         return group;
