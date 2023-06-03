@@ -9,7 +9,12 @@ const bcrypt = require('bcrypt');
 const resolvers = {
     Query: {
       groups: async () => {
-        return await Group.find();
+        return new Promise((resolve) => {
+          setTimeout(async () => {
+            const groups = await Group.find();
+            resolve(groups);
+          }, 2000); // Delay of 2 seconds (2000 milliseconds)
+        });
       },
       group: async (parent, args) => {
         const { id } = args;
@@ -28,8 +33,11 @@ const resolvers = {
           description,
           owner: context.req.authuser,
         });
-        newGroup.members.push(context.req.authuser)
+        newGroup.members.push(context.req.authuser);
         newGroup.save();
+        const author = await User.findById(context.req.authuser);
+        author.groups.push(newGroup);
+        await author.save()
         return newGroup;
       },
       joinGroup: async (parent, { groupId }, context) => {
@@ -46,7 +54,7 @@ const resolvers = {
         if (!group) {
           throw new Error('Group not found');
         }
-      
+        console.log(group.members.includes(context.req.authuser));
         if (group.members.includes(context.req.authuser)) {
           throw new Error('User is already a member of the group');
         }

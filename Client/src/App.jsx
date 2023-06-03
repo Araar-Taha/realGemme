@@ -27,7 +27,8 @@ function App() {
   const fetchCookie=() => {
     console.log("oazjhezahzaioehaiazehiozahoei")
     const storedToken = Cookies.get('token'); // Retrieve the token from cookies
-    setToken(storedToken || '');
+    // setToken(storedToken);
+    console.log("hello")
     console.log(token);
   }
   ;
@@ -98,6 +99,8 @@ function App() {
             setCardVisible2,
             setCardVisible3,
             fetchCookie,
+            token,
+            setToken
           }}
         >
           <RouterProvider router={router} />

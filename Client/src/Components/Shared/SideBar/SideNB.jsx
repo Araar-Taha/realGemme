@@ -2,6 +2,9 @@
 import home from "../../../assets/icons/home.svg";
 import store from "../../../assets/icons/store.svg";
 import trend from "../../../assets/icons/trend.svg";
+import valo from "../../../assets/icons/popularCommunities/Valorant.png"
+import pubg from "../../../assets/icons/popularCommunities/Pubg.png"
+import fifa from "../../../assets/icons/popularCommunities/Fifa.png"
 
 
 import wemme from "../../../assets/icons/PlayWemme.svg";
@@ -9,7 +12,10 @@ import wemme from "../../../assets/icons/PlayWemme.svg";
 import Communities from "./Communities.jsx";
 import side from "./sidebar.module.css";
 
+
 function SideNB() {
+  
+
   return (
     <div className={side.SideNB}>
       
@@ -31,17 +37,29 @@ function SideNB() {
         <div className={side.optionword}>Popular communities</div>
       </div>
       {/* <Popularcommunities />  this is the component which should be displayed but the images are not being loaded*/}
+     
       <div className={side.popular}>
-        <Communities />
+        <div className={side.community} >
+                <img src={valo} alt="" />
+                <h3>VALORANT DZ</h3>
+            </div>
+            <div className={side.community}>
+                <img src={fifa} alt="" />
+                <h3>FIFA 23 DZ</h3>
+            </div>
+            <div className={side.community}>
+                <img src={pubg} alt="" />
+                <h3>PUBG DZ</h3>
+            </div>
       </div>
 
 
       
       <div className={side.line}>Followed</div>
 
-      <div className={side.followed}>
+      
         <Communities />
-      </div>
+      
 
       <div className={side.sideFooter}>
         <div className={side.contact}>

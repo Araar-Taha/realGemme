@@ -18,15 +18,17 @@ const typeDefs = gql`
 
   type User {
     _id : ID!
-    username : String
+    username : String!
     email : String!
     password : String
     profile_picture: String
     posts : [ID]
     friends : [ID]
+    groups: [Group]
     verificationtoken : String
     verified: Boolean
-  }
+    fcmTokens: [String]
+}
   input CreateGroupInput {  
     name: String!
     description: String!

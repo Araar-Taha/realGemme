@@ -9,7 +9,7 @@ const { ObjectId } = require("mongodb");
 const resolvers = {
     
     Query : {
-        usercall : (parent, args , context) => context.req.authenticated ,
+        usercall : (parent, args , context) => context.req.authuser ,
         
         getUserByID : async (parent,args) =>{
             const id = args
@@ -40,12 +40,29 @@ const resolvers = {
               }
         },
 
-        allusers : async (req,res,context) =>{  
-            userdata =await user.findById(context.req.authuser)
-            console.log(userdata);
-            // userdata.password = undefined;
-            return userdata
-        }
+            // allusers : async (req,res,context) =>{  
+            //     userdata =await user.findById(context.req.authuser)
+            //     console.log(userdata);
+            //     // userdata.password = undefined;
+            //     return userdata
+            // }
+
+            allusers: async (parent, args, context, info) => {
+                return new Promise((resolve) => {
+                  setTimeout(async () => {
+                    try {
+                      const userdata = await user.findById(context.req.authuser);
+                      console.log(userdata);
+                      // userdata.password = undefined; // If you want to exclude the password from the response
+                      resolve(userdata);
+                    } catch (error) {
+                      // Handle the error appropriately
+                      console.error(error);
+                      throw new Error("An error occurred while fetching user data.");
+                    }
+                  }, 2000); // Delay of 2 seconds (2000 milliseconds)
+                });
+              },
     },
     Mutation : {
 

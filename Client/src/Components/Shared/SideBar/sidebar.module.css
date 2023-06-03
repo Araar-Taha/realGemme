@@ -116,6 +116,7 @@
   align-items: center;
   font-size: 0.6rem;
   margin-bottom: 0.5rem;
+  font-size: 1rem;
 
 }
 
@@ -125,4 +126,10 @@
 
 .community img {
   width: 2.5rem;
+}
+
+.loaderContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

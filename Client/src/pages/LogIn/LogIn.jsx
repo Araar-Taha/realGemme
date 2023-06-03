@@ -30,13 +30,14 @@ export default function LogIn() {
     console.log(data);
   }
   const navigate = useNavigate();
-  const { fetchCookie } =useContext(AppPageContext);
+  const { fetchCookie,setToken,token } =useContext(AppPageContext);
 
-  const [token, setToken] = useState("");
+  
 
   useEffect(() => {
     const Token = Cookies.get('Token');
     if (Token) {
+        
         navigate("/")}
     },[]);
 
@@ -50,6 +51,7 @@ export default function LogIn() {
         : undefined;
       Cookies.set('Token', token, { expires: expirationDate });
       fetchCookie();
+      setToken(token);
       navigate("/");
       // Perform any other actions after successful login
     }
