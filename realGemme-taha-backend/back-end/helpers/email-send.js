@@ -4,8 +4,8 @@ const transporter = nodemailer.createTransport(
     {
         service : "gmail",
         auth: {
-            user:"araarmohamed173@gmail.com" ,
-            pass: "173mta173",
+            user:"" ,
+            pass: "",
     }
 }
 )
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport(
 async function sendmail(email,verificationtoken){
     console.log("email sending")
     const emailoption = {
-        from : 'mt.araar@esi-sba.dz',
+        from : '',
         to : email,
         subject : 'verify your email ',
         text : `Please click on the link to verify your email: http://localhost:8080/verify/${verificationtoken}`    
